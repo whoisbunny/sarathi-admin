@@ -8,10 +8,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import {
-
-  loginUser,
-} from "../../../store/auth/auth.reducer";
+import { loginUser } from "@/store/auth/auth.reducer";
 const schema = yup
   .object({
     phoneNumber: yup
@@ -22,7 +19,6 @@ const schema = yup
   })
   .required();
 const LoginForm = () => {
-
   const dispatch = useDispatch();
   const {
     register,
@@ -33,21 +29,19 @@ const LoginForm = () => {
     //
     mode: "all",
   });
-    const { token, refreshtoken, isLoggedin } = useSelector(
-      (state) => state.auth
-    );
+  const { token, refreshtoken, isLoggedin } = useSelector(
+    (state) => state.auth
+  );
   const navigate = useNavigate();
   const onSubmit = (data) => {
     dispatch(loginUser(data));
- 
   };
 
-
-   useEffect(() => {
-     if (isLoggedin) {
-       navigate("/dashboard");
-     }
-   }, [isLoggedin, navigate]);
+  useEffect(() => {
+    if (isLoggedin) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedin, navigate]);
 
   const [checked, setChecked] = useState(false);
 

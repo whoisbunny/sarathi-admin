@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "@/components/ui/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
-import { handleRegister } from "./store";
+// import { handleRegister } from "./store";
 
 const schema = yup
   .object({
@@ -41,7 +41,7 @@ const RegForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    dispatch(handleRegister(data));
+    // dispatch(handleRegister(data));
     setTimeout(() => {
       navigate("/");
     }, 1500);
