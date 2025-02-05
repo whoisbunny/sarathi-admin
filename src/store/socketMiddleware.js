@@ -5,22 +5,24 @@ let socket;
 
 const socketMiddleware = (storeAPI) => (next) => (action) => {
   if (!socket) {
-     const token = localStorage.getItem("TOKEN"); // Retrieve token from storage
-     socket = io(`${import.meta.env.VITE_BASE_URL}`, {
-       withCredentials: true,
-       query: { token }, // Pass token in the query
-     });
-  
+    const token = window.localStorage.getItem("TOKEN");
+    console.log(token);
+    
+    
+    socket = io(`${import.meta.env.VITE_BASE_URL}`, {
+      withCredentials: true,
+      query: { token }, // Pass token in the query
+    });
 
     // Handle connection events
     socket.on("connect", () => {
       storeAPI.dispatch(setConnected({ flag: true, id: socket.id }));
     });
 
-     socket.on("activeUsers", (users) => {
-       console.log("Active users from server:", users);
-       storeAPI.dispatch(setActiveUsers(users));
-     });
+    socket.on("activeUsers", (users) => {
+      console.log("Active users from server:", users);
+      storeAPI.dispatch(setActiveUsers(users));
+    });
     socket.on("receiveMessage", (message) => {
       storeAPI.dispatch(addMessage(message));
     });
@@ -43,7 +45,7 @@ const socketMiddleware = (storeAPI) => (next) => (action) => {
   // if (action.type === "socket/activeUsers") {
   //   socket.on("activeUsers", (users) => {
   //     console.log("users", users);
-      
+
   //     storeAPI.dispatch(setActiveUsers(users));
   //   });
   // }
