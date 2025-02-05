@@ -27,7 +27,7 @@ export default defineConfig({
     //reactRefresh(),
   ],
    server: {
-    host: '192.168.188.242', // Replace with your desired IP or keep '0.0.0.0' for all interfaces
+    // host: '192.168.188.242', // Replace with your desired IP or keep '0.0.0.0' for all interfaces
     port: 3000,      // (Optional) Specify a port
   },
 });
