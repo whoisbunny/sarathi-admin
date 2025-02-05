@@ -6,7 +6,7 @@ let socket;
 const socketMiddleware = (storeAPI) => (next) => (action) => {
   if (!socket) {
      const token = localStorage.getItem("TOKEN"); // Retrieve token from storage
-     socket = io(`${import.meta.env.VITE_BASE_URL_EMPTY}`, {
+     socket = io(`${import.meta.env.VITE_BASE_URL}`, {
        withCredentials: true,
        query: { token }, // Pass token in the query
      });

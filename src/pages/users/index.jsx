@@ -9,8 +9,7 @@ import AddUser from "./AddUsers";
 import EditUser from "./EditUser";
 import UserGrid from "./UserGrid";
 import { getAllUsers, toggleAddModal } from "@/store/user/user.reducer";
-import UserList from "./userList";
-
+import UserList from "./UserList";
 const UsersPostPage = () => {
   const [filler, setfiller] = useState("list");
   const { width, breakpoints } = useWidth();
@@ -21,16 +20,13 @@ const UsersPostPage = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-    dispatch(getAllUsers({role:'USER'}))
+    dispatch(getAllUsers({ role: "USER" }));
     setTimeout(() => {
       setIsLoaded(false);
-
     }, 1500);
   }, [filler]);
 
-
   console.log("users", users);
-  
 
   return (
     <div>
