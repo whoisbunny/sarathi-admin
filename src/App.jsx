@@ -116,8 +116,10 @@ const UserDetailsPage = lazy(() => import("./pages/users/UserDetails"));
 const CaptainDetailsPage = lazy(() => import("./pages/captain/CaptainDetails"));
 const VehiclePostPage = lazy(() => import("./pages/vehicle"));
 const RidePostPage = lazy(() => import("./pages/ride"));
+const SettingsPostPage = lazy(() => import("./pages/settings"));
+const CouponPostPage = lazy(() => import("./pages/coupon"));
 function App() {
- const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({
@@ -285,7 +287,7 @@ function App() {
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog-details" element={<BlogDetailsPage />} />
           <Route path="faq" element={<FaqPage />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="settings" element={<SettingsPostPage />} />
           <Route path="profile" element={<Profile />} />
           <Route path="basic" element={<BasicWidget />} />
           <Route path="statistic" element={<StatisticWidget />} />
@@ -298,6 +300,7 @@ function App() {
           <Route path="captain" element={<CaptainPostPage />} />
           <Route path="vehicle" element={<VehiclePostPage />} />
           <Route path="ride" element={<RidePostPage />} />
+          <Route path="coupon" element={<CouponPostPage />} />
           <Route path="user/:id" element={<UserDetailsPage />} />
           <Route path="captain/:id" element={<CaptainDetailsPage />} />
 

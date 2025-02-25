@@ -24,7 +24,7 @@ var vite_config_default = defineConfig({
     react()
   ],
   server: {
-    host: "192.168.188.242",
+    host: "192.168.246.242",
     port: 3e3
   }
 });

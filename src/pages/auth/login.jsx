@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import LogoWhite from "@/assets/images/logo/logo-white.svg";
 import Logo from "@/assets/images/logo/logo.svg";
 import Illustration from "@/assets/images/auth/ils1.svg";
+import dayjs from "dayjs";
 const login = () => {
   const [isDark] = useDarkMode();
  
@@ -52,17 +53,17 @@ const login = () => {
                 <div className="text-center 2xl:mb-10 mb-4">
                   <h4 className="font-medium">Sign in</h4>
                   <div className="text-slate-500 text-base">
-                    Sign in to your account to start using Dashcode
+                    Sign in to your account to start using Sarathi
                   </div>
                 </div>
                 <LoginForm />
-                <div className="relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">
+                {/* <div className="relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">
                   <div className="absolute inline-block bg-white dark:bg-slate-800 dark:text-slate-400 left-1/2 top-1/2 transform -translate-x-1/2 px-4 min-w-max text-sm text-slate-500 font-normal">
                     Or continue with
                   </div>
-                </div>
+                </div> */}
               
-                <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-12 uppercase text-sm">
+                {/* <div className="md:max-w-[345px] mx-auto font-normal text-slate-500 dark:text-slate-400 mt-12 uppercase text-sm">
                   Don’t have an account?{" "}
                   <Link
                     to="/register"
@@ -70,10 +71,10 @@ const login = () => {
                   >
                     Sign up
                   </Link>
-                </div>
+                </div> */}
               </div>
               <div className="auth-footer text-center">
-                Copyright 2021, Dashcode All Rights Reserved.
+                Copyright {dayjs().year()}, Sarathi All Rights Reserved.
               </div>
             </div>
           </div>

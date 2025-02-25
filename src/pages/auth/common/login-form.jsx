@@ -54,6 +54,7 @@ const LoginForm = () => {
         register={register}
         error={errors.phoneNumber}
         className="h-[48px]"
+        placeholder="Enter your phone number"
       />
       <Textinput
         name="password"
@@ -62,6 +63,7 @@ const LoginForm = () => {
         register={register}
         error={errors.password}
         className="h-[48px]"
+        placeholder="Enter your password"
       />
       <div className="flex justify-between">
         <Checkbox

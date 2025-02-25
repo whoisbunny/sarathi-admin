@@ -10,6 +10,8 @@ import user from "./user/user.reducer";
 import socket from "./socketSlice";
 import vehicle from "./vehicle/vehicle.reducer";
 import ride from "./ride/ride.reducer";
+import settings from "./settings/settings.reducer";
+import coupon from "./coupon/coupon.reducer";
 
 const rootReducer = {
   layout,
@@ -24,5 +26,7 @@ const rootReducer = {
   vehicle,
   ride,
   socket,
+  settings,
+  coupon,
 };
 export default rootReducer;

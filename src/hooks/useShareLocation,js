@@ -6,8 +6,8 @@ const useShareLocation = (socket) => {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           const location = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
+            latitude: position?.coords?.latitude,
+            longitude: position?.coords?.longitude,
           };
 
           // Send location to server

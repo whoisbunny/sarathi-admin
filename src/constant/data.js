@@ -59,6 +59,18 @@ export const menuItems = [
     link: "ride",
   },
   {
+    title: "General Settings",
+    isHide: true,
+    icon: "clarity:settings-line",
+    link: "settings",
+  },
+  {
+    title: "Coupons",
+    isHide: true,
+    icon: "mdi:coupon-outline",
+    link: "coupon",
+  },
+  {
     isHeadr: true,
     title: "apps",
   },
@@ -206,10 +218,10 @@ export const menuItems = [
         childtitle: "Prfoile",
         childlink: "profile",
       },
-      {
-        childtitle: "Settings",
-        childlink: "settings",
-      },
+      // {
+      //   childtitle: "Settings",
+      //   childlink: "settings",
+      // },
       {
         childtitle: "404 page",
         childlink: "/404",

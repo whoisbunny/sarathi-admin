@@ -23,8 +23,8 @@ const statusOptions = [
 
 const FormValidationSchema = yup
   .object({
-    pickupLocation: yup.string().required("Pickup Location is required"),
-    dropoffLocation: yup.string().required("Dropoff Location is required"),
+    // pickupLocation: yup.string().required("Pickup Location is required"),
+    // dropoffLocation: yup.string().required("Dropoff Location is required"),
     fare: yup
       .number()
       .required("Fare is required")
@@ -38,7 +38,7 @@ const EditRide = () => {
 
   const findOption = (value) => {
     const data = statusOptions.filter((e) => e.value === value);
-    console.log(data);
+    // console.log(data);
 
     return data[0];
   };
@@ -60,6 +60,16 @@ const EditRide = () => {
   const onSubmit = (data) => {
     data.userId = editItem.userId;
     data.status = data.status.value;
+    // data.pickupLocation = JSON.stringify({
+    //   address: data?.pickupLocation,
+    //   longitude: 0,
+    //   latitude: 0,
+    // });
+    // data.dropoffLocation = JSON.stringify({
+    //   address: data?.dropoffLocation,
+    //   longitude: 0,
+    //   latitude: 0,
+    // });
     dispatch(updateStatus({ id: editItem._id, status: data.status }));
 
     setTimeout(() => {
@@ -101,22 +111,24 @@ const EditRide = () => {
                 {errors.status.message}
               </div>
             )}
-            <Textinput
-              name="pickupLocation"
-              label="Pickup Location"
-              placeholder="Pickup Location"
-              register={register}
-              error={errors.pickupLocation}
-              disabled={true}
-            />
-            <Textinput
-              name="dropoffLocation"
-              label="Dropoff Location"
-              placeholder="Dropoff Location"
-              register={register}
-              error={errors.dropoffLocation}
-              disabled={true}
-            />
+            <div>
+              <label className="block capitalize ">Pickup Location</label>
+              <input
+                type="text"
+                value={editItem?.pickupLocation?.address}
+                className="form-control py-2"
+                disabled
+              />
+            </div>
+            <div>
+              <label className="block capitalize ">Dropoff Location</label>
+              <input
+                type="text"
+                value={editItem?.dropoffLocation?.address}
+                className="form-control py-2"
+                disabled
+              />
+            </div>
             <Textinput
               name="fare"
               label="Fare"
@@ -125,6 +137,7 @@ const EditRide = () => {
               error={errors.fare}
               disabled={true}
             />
+            
           </div>
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark text-center">Update</button>

@@ -13,13 +13,13 @@ import {
 } from "@/store/ride/ride.reducer";
 import API from "@/configs/API";
 
-const statusOptions = [
-  { value: "pending", label: "Pending" },
-  { value: "accepted", label: "Accepted" },
-  { value: "assigned", label: "Assigned" },
-  { value: "completed", label: "Completed" },
-  { value: "cancelled", label: "Cancelled" },
-];
+  const statusOptions = [
+    { value: "pending", label: "Pending" },
+    { value: "accepted", label: "Accepted" },
+    { value: "assigned", label: "Assigned" },
+    { value: "completed", label: "Completed" },
+    { value: "cancelled", label: "Cancelled" },
+  ];
 const FormValidationSchema = yup
   .object({
     fare: yup
@@ -72,7 +72,7 @@ const AssignRide = () => {
       alert("Please select a captain");
       return;
     }
-    console.log(data);
+ 
     
 
     try {

@@ -80,6 +80,10 @@ export const rideSlice = createSlice({
       state.editItem = action.payload;
       state.assignModel = !state.assignModel;
     },
+    // -- handling socket 
+    socketAddRide: (state, action) => {
+      state.rides.unshift(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -162,5 +166,6 @@ export const {
   updateRide,
   assignRide,
   toggleAssignModal,
+  socketAddRide,
 } = rideSlice.actions;
 export default rideSlice.reducer;

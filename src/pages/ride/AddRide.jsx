@@ -26,11 +26,10 @@ const FormValidationSchema = yup
       .number()
       .required("Fare is required")
       .typeError("Fare must be a number"),
-    
   })
   .required();
 
-const AddRide = ({userId}) => {
+const AddRide = ({ userId }) => {
   const { openRideModal } = useSelector((state) => state.ride);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
@@ -46,8 +45,17 @@ const AddRide = ({userId}) => {
   });
 
   const onSubmit = (data) => {
-
-    data.userId = userId
+    data.userId = userId;
+    data.pickupLocation = JSON.stringify({
+      address: data.pickupLocation,
+      longitude: 0,
+      latitude: 0,
+    });
+    data.dropoffLocation = JSON.stringify({
+      address: data.dropoffLocation,
+      longitude: 0,
+      latitude: 0,
+    });
     dispatch(addRide(data));
 
     setTimeout(() => {
@@ -68,7 +76,6 @@ const AddRide = ({userId}) => {
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid lg:grid-cols-1 gap-4 grid-cols-1">
-           
             <Textinput
               name="pickupLocation"
               label="Pickup Location"
@@ -90,7 +97,6 @@ const AddRide = ({userId}) => {
               register={register}
               error={errors.fare}
             />
-            
           </div>
           <div className="ltr:text-right rtl:text-left">
             <button className="btn btn-dark text-center">Add</button>

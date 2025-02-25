@@ -16,7 +16,7 @@ const RealTimeMap = ({ socket }) => {
     socket.on("locationUpdate", (data) => {
       setActiveUsers((prev) =>
         prev.map((user) =>
-          user.id === data.id ? { ...user, location: data.location } : user
+          user.id === data.id ? { ...user, location: data?.location } : user
         )
       );
     });
@@ -47,7 +47,7 @@ const RealTimeMap = ({ socket }) => {
             user.location && (
               <Marker
                 key={user.id}
-                position={[user.location.latitude, user.location.longitude]}
+                position={[user?.location?.latitude, user?.location?.longitude]}
               >
                 <Popup>
                   <div>
@@ -55,9 +55,9 @@ const RealTimeMap = ({ socket }) => {
                       {user.id === userId ? "You" : `User ${user.id}`}
                     </strong>
                     <br />
-                    Latitude: {user.location.latitude.toFixed(2)}
+                    Latitude: {user.location?.latitude.toFixed(2)}
                     <br />
-                    Longitude: {user.location.longitude.toFixed(2)}
+                    Longitude: {user?.location?.longitude.toFixed(2)}
                   </div>
                 </Popup>
               </Marker>

@@ -5,24 +5,24 @@ import Button from "@/components/ui/Button";
 import GridLoading from "@/components/skeleton/Grid";
 import TableLoading from "@/components/skeleton/Table";
 import { ToastContainer } from "react-toastify";
-import { getAllRide, toggleAddModal } from "@/store/ride/ride.reducer";
-import AddRide from "./AddRide";
-import EditRide from "./EditRide";
-import RideList from "./RideList";
-import RideGrid from "./RideGrid";
-import AssignRide from "./AssignRide";
+import { getAllCoupons, toggleAddModal } from "@/store/coupon/coupon.reducer";
 
-const RidePostPage = ({ userId }) => {
-  const [filler, setfiller] = useState("grid");
+import AddCoupon from "./AddCoupon";
+import EditCoupon from "./EditCoupon";
+import CouponGrid from "./CouponGrid";
+import CouponList from "./CouponList";
+
+const CouponPostPage = () => {
+  const [filler, setfiller] = useState("list");
   const { width, breakpoints } = useWidth();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const { rides } = useSelector((state) => state.ride);
+  const { coupons } = useSelector((state) => state.coupon);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoaded(true);
-    dispatch(getAllRide());
+    dispatch(getAllCoupons());
     setTimeout(() => {
       setIsLoaded(false);
     }, 1500);
@@ -33,7 +33,7 @@ const RidePostPage = ({ userId }) => {
       <ToastContainer />
       <div className="flex flex-wrap justify-between items-center mb-4">
         <h4 className="font-medium lg:text-2xl text-xl capitalize text-slate-900 inline-block ltr:pr-4 rtl:pl-4">
-          Rides
+          Coupons
         </h4>
         <div
           className={`${
@@ -64,37 +64,41 @@ const RidePostPage = ({ userId }) => {
             iconClass=" text-lg"
             onClick={() => setfiller("grid")}
           />
-
-          {userId && (
-            <Button
-              icon="heroicons-outline:plus"
-              text="Add Ride"
-              className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
-              iconClass=" text-lg"
-              onClick={() => dispatch(toggleAddModal(true))}
-            />
-          )}
+          <Button
+            icon="heroicons-outline:filter"
+            text="On going"
+            className="bg-white dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-900 hover:text-white btn-md  h-min text-sm font-normal"
+            iconClass=" text-lg"
+          />
+          <Button
+            icon="heroicons-outline:plus"
+            text="Add Coupon"
+            className="btn-dark dark:bg-slate-800  h-min text-sm font-normal"
+            iconClass=" text-lg"
+            onClick={() => dispatch(toggleAddModal(true))}
+          />
         </div>
       </div>
-      {isLoaded && filler === "grid" && <GridLoading count={rides?.length} />}
-      {isLoaded && filler === "list" && <TableLoading count={rides?.length} />}
+      {isLoaded && filler === "grid" && <GridLoading count={coupons?.length} />}
+      {isLoaded && filler === "list" && (
+        <TableLoading count={coupons?.length} />
+      )}
+
       {filler === "grid" && !isLoaded && (
         <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-          {rides?.map((ride, index) => (
-            <RideGrid ride={ride} key={index} />
+          {coupons.map((coupon, Index) => (
+            <CouponGrid coupon={coupon} key={Index} />
           ))}
         </div>
       )}
       {filler === "list" && !isLoaded && (
         <div>
-          <RideList rides={rides} />
+          <CouponList coupons={coupons} />
         </div>
       )}
-      <AddRide userId={userId} />
-      <EditRide />
-      <AssignRide/>
+      <AddCoupon />
+      <EditCoupon />
     </div>
   );
 };
-
-export default RidePostPage;
+export default CouponPostPage;

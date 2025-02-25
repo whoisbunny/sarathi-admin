@@ -10,10 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { updateRide, assignRide } from "@/store/ride/ride.reducer";
 
 const RideGrid = ({ ride }) => {
-  const { fare, dropoffLocation, status, pickupLocation } = ride;
+
+  // const { fare, dropoffLocation, status, pickupLocation } = ride;
   const dispatch = useDispatch();
 
-  const [totaldays, setTotaldays] = useState(0);
 
   const navigate = useNavigate();
   // handleClick to view project single page
@@ -34,12 +34,12 @@ const RideGrid = ({ ride }) => {
           <div className="font-medium text-base leading-6">
             <span className="block date-label">Pick Up</span>
             <div className="dark:text-slate-200 text-slate-900 max-w-[160px] truncate">
-              {pickupLocation}
+              {ride?.pickupLocation?.address}
             </div>
             <span className="block date-label">DropOff</span>
 
             <div className="dark:text-slate-200 text-slate-900 max-w-[160px] truncate">
-              {dropoffLocation}
+              {ride?.dropoffLocation?.address}
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ const RideGrid = ({ ride }) => {
       <div className="flex space-x-4  rtl:space-x-reverse">
         <div>
           <span className="block date-label">FARE</span>
-          <span className="block date-text">{fare}</span>
+          <span className="block date-text">{ride?.fare}</span>
         </div>
         {/* <div>
           <span className="block date-label">DropOff</span>
@@ -136,19 +136,29 @@ const RideGrid = ({ ride }) => {
           <span className="block w-full">
             <span
               className={` inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 ${
-                status === "completed" ? "text-success-500 bg-success-500" : ""
+                ride?.status === "completed"
+                  ? "text-success-500 bg-success-500"
+                  : ""
               } 
-            ${status === "pending" ? "text-warning-500 bg-warning-500" : ""}
-            ${status === "cancelled" ? "text-danger-500 bg-danger-500" : ""}
+            ${
+              ride?.status === "pending"
+                ? "text-warning-500 bg-warning-500"
+                : ""
+            }
+            ${
+              ride?.status === "cancelled"
+                ? "text-danger-500 bg-danger-500"
+                : ""
+            }
                         ${
-                          status === "assigned"
+                          ride?.status === "assigned"
                             ? "text-primary-500 bg-primary-500"
                             : ""
                         }
 
              `}
             >
-              {status}
+              {ride?.status}
             </span>
           </span>
         </div>
